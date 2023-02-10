@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+	<!-- No grammar constraints (DTD or XML Schema) referenced in the document 경고 떠서 추가 -->
+
+<configuration scan="true" scanPeriod="30 seconds">
+	<!-- Stop output INFO at start -->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>C:\logs\logback\p1101\logback-%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} : /%method : line[%L] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} : /%method : line[%L] ##### %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <!-- Loggers -->
+	<logger name="jdbc.sqlonly" level="INFO"/>
+	<logger name="jdbc.sqltiming" level="ERROR"/>
+	<logger name="jdbc.audit" level="ERROR"/>
+	<logger name="jdbc.resultset" level="ERROR"/>
+	<logger name="jdbc.resultsettable" level="INFO"/>
+	<logger name="jdbc.connection" level="INFO"/>
+
+    <root level="INFO">
+       <appender-ref ref="STDOUT" />
+       <appender-ref ref="ROLLING" />
+    </root>
+
+</configuration>

@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'SGB';
+    src: url('/common/fonts/SEBANG Gothic Bold.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+	font-family: 'SGB' !important;
+	font-size: 12px;
+}
+
+body {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+@media only screen and (max-width: 1199px) {
+
+}
+
+@media only screen and (max-width: 991px) {
+
+}
+
+@media only screen and (max-width: 767px) {
+
+}
+
+@media only screen and (max-width: 480px) {
+
+}
